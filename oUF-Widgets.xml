@@ -1,0 +1,4 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Include file="Libs\LibStringFormat-1.0\LibStringFormat-1.0.xml"/>
+    <Script file="oUF-Widgets.lua"/>
+</Ui>

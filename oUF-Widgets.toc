@@ -1,0 +1,5 @@
+## Interface: 100000
+## Version: 1.0
+## Title: oUF-Widgets
+
+oUF-Widgets.xml
