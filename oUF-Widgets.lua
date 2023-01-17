@@ -3,13 +3,17 @@ local oUF = ns.oUF or oUF
 
 local StringFormat = LibStub('LibStringFormat-1.0')
 
-local function Update(self)
+local function Update(self, event, args)
     local element = self.Widget
     local widgetSetId = UnitWidgetSet(self.unit)
 
-    element:SetShown(widgetSetId ~= nil)
-
-    if not widgetSetId then return end
+    if not widgetSetId then
+        element:Hide()
+        element.text:SetText('')
+        return
+    else
+        element:Show()
+    end
 
     local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetId)
     local widgetID = widgets[1].widgetID
@@ -18,6 +22,13 @@ local function Update(self)
     local widgetTypeInfo = UIWidgetManager:GetWidgetTypeInfo(widgetType)
 
     local widgetInfo = widgetTypeInfo.visInfoDataFunction(widgetID);
+
+    if not widgetInfo then
+        element:Hide()
+        element.text:SetText('')
+        return
+    end
+
     --local widgetsOnlyMode = UnitNameplateShowsWidgetsOnly(self.unit)
 
     local min, max, current = widgetInfo.barMin, widgetInfo.barMax, widgetInfo.barValue
